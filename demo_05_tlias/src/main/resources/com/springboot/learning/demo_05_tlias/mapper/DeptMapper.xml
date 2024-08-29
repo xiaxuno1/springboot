@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--必须保证namespace的路径为xxxMapper的全路径-->
+<mapper namespace="com.springboot.learning.demo_05_tlias.mapper.DeptMapper">
+    <!--
+    结果映射mysql返回的字段和java实体类的属性不相同时映射
+    实时上根本不用写这个映射，只要开启驼峰自动映射 deptId 映射为Sql中的dept_id字段
+        resultMap:
+            id：这个结果映射的标识，作为select标签的resultMap属性的值。
+            type：结果集要映射的类。可以使用别名。
+-->
+    <resultMap id="deptResultMap" type="com.springboot.learning.demo_05_tlias.pojo.Dept">
+        <!--对象的唯一标识，官方解释是：为了提高mybatis的性能。建议写上。-->
+        <id property="id" column="id"/>
+        <!--当属性名和数据库列名一致时，可以省略。但建议都写上。-->
+        <!--javaType用来指定属性类型。jdbcType用来指定列类型。一般可以省略。-->
+        <result property="name" column="name"/>
+        <result property="createTime" column="create_time"/>
+        <result property="updateTime" column="updateTime"/>
+    </resultMap>
+
+    <!--resultMap属性的值必须和resultMap标签中id属性值一致。-->
+    
+<!--  员工列表查询  -->
+    <select id="selectAll" resultMap="deptResultMap">
+        SELECT * FROM dept
+    </select>
+    
+<!--    员工列表查询 根据传入条件分页查询-->
+
+
+<!--   删除员工 -->
+    <delete id="deleteById">
+        DELETE FROM dept WHERE id=#{id}
+    </delete>
+
+<!--    批量删除-->
+    <!--
+collection：集合或数组
+item：集合或数组中的元素
+separator：分隔符
+open：foreach标签中所有内容的开始
+close：foreach标签中所有内容的结束
+-->
+    <delete id="deleteByIds" >
+        delete from dept where id in 
+                        <foreach collection="ids" item="id" separator="," open="(" close=")">
+                            #{id}
+                        </foreach>
+    </delete>
+
+<!--   添加员工 -->
+<!--    trim标签中的语句 前添加 ，
+- prefix：在trim标签中的语句前**添加**内容
+- suffix：在trim标签中的语句后**添加**内容
+- prefixOverrides：前缀**覆盖掉（去掉）**
+- suffixOverrides：后缀**覆盖掉（去掉）**后添加),去除后缀多余的 ，-->
+<!--    必须保证#{var}中var的变量名称与Mapper中定义一致-->
+    <insert id="insertByName" >
+        INSERT INTO dept (name,create_time,update_time)
+        VALUES (#{name}, #{createTime}, #{updateTime})
+    </insert>
+    
+<!--   根据ID查询 -->
+    <select id="selectByID" resultMap="deptResultMap">
+        SELECT * FROM dept WHERE id =#{id}
+    </select>
+
+<!--   修改员工 有非必须字段，即可以传也可以不传，因此需要动态sql,生成set关键字，同时去掉最后多余的“,”-->
+    <update id="updateById">
+        UPDATE dept <set>
+                       id = #{id}, name=#{name},update_time=#{updateTime},
+<!--  entrydate !=''" 会报错，因为其为LoacalDate类型，而不是String，不能一起比较-->
+    </set>
+        where id = #{id}
+    </update>
+
+    <delete id="delete">
+        delete
+        from dept
+        where id in
+        <foreach collection="ids" item="id" separator="," open="(" close=")">
+            #{id}
+        </foreach>
+    </delete>
+
+    <!--条件查询-->
+    <select id="list" resultMap="deptResultMap">
+        select *
+        from dept
+        <where>
+            <if test="name != null and name != ''">
+                name like concat('%',#{name},'%')
+            </if>
+            <if test="gender != null">
+                and gender = #{gender}
+            </if>
+            <if test="begin != null and end != null">
+                and entrydate between #{begin} and #{end}
+            </if>
+        </where>
+        order by update_time desc
+    </select>
+
+</mapper>
