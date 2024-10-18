@@ -1,0 +1,10 @@
+com\springboot\learning\pojo\User2.class
+com\springboot\learning\controller\RequestController.class
+com\springboot\learning\pojo\User.class
+com\springboot\learning\controller\ResponseController.class
+com\springboot\learning\Demo02ReqRespApplication.class
+com\springboot\learning\controller\EmpController.class
+com\springboot\learning\pojo\Emp.class
+com\springboot\learning\utils\XmlParserUtils.class
+com\springboot\learning\pojo\Address.class
+com\springboot\learning\pojo\Result.class

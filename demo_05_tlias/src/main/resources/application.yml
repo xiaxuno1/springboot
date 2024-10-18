@@ -1,0 +1,14 @@
+spring:
+  datasource:
+    driver-class-name:  com.mysql.cj.jdbc.Driver
+    url:  jdbc:mysql://localhost:3308/mybatisdemo
+    username:  root
+    password:  PSPS2053
+#\u5F00\u542F\u9A7C\u5CF0\u547D\u540D\u81EA\u52A8\u6620\u5C04
+#mybatis:
+#  configuration:
+#    map-underscore-to-camel-case: true
+#\u8F93\u51FA\u65E5\u5FD7
+mybatis:
+  configuration:
+    log-impl:  org.apache.ibatis.logging.stdout.StdOutImpl

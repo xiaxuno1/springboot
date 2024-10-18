@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ExternalStorageConfigurationManager" enabled="true" />
+  <component name="FrameworkDetectionExcludesConfiguration">
+    <file type="web" url="file://$PROJECT_DIR$/demo_04_mybatis_crud" />
+  </component>
+  <component name="MavenProjectsManager">
+    <option name="originalFiles">
+      <list>
+        <option value="$PROJECT_DIR$/demo_01_quickstart/pom.xml" />
+        <option value="$PROJECT_DIR$/demo_02_req_resp/pom.xml" />
+        <option value="$PROJECT_DIR$/springboot_mybatis_crud/pom.xml" />
+        <option value="$PROJECT_DIR$/demo_03_mybaits_crud_quickstart/pom.xml" />
+        <option value="$PROJECT_DIR$/demo_04_springboot_mybatis_crud/pom.xml" />
+        <option value="$PROJECT_DIR$/demo_05_tlias/pom.xml" />
+        <option value="$PROJECT_DIR$/demo_06_aop_quickstart/pom.xml" />
+        <option value="$PROJECT_DIR$/demo_06_aop/pom.xml" />
+        <option value="$PROJECT_DIR$/demo_07_web_config/pom.xml" />
+      </list>
+    </option>
+    <option name="ignoredFiles">
+      <set>
+        <option value="$PROJECT_DIR$/demo_06_aop_quickstart/pom.xml" />
+        <option value="$PROJECT_DIR$/springboot_mybatis_crud/pom.xml" />
+      </set>
+    </option>
+  </component>
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_22" default="true" project-jdk-name="17" project-jdk-type="JavaSDK">
+    <output url="file://$PROJECT_DIR$/out" />
+  </component>
+</project>
